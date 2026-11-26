@@ -1,0 +1,688 @@
+{
+  "input": {
+    "query": "find mid-cap DeFi tokens with rising volume",
+    "limit": 5,
+    "scan_limit": 200
+  },
+  "output": {
+    "query": "find mid-cap DeFi tokens with rising volume",
+    "parsed_filters": {
+      "categories": [
+        {
+          "label": "DeFi",
+          "accepted_tags": [
+            "defi",
+            "dex",
+            "lending",
+            "borrowing",
+            "yield-farming",
+            "liquid-staking",
+            "derivatives"
+          ]
+        }
+      ],
+      "ecosystems": [],
+      "exclude_stablecoins": false,
+      "asset_type": "token",
+      "market_cap_min_usd": 100000000,
+      "market_cap_max_usd": 10000000000,
+      "volume_24h_min_usd": null,
+      "price_min_usd": null,
+      "price_max_usd": null,
+      "volume_change_24h_min_pct": 0
+    },
+    "api_query": {
+      "endpoint": "/v3/cryptocurrency/listings/latest (keyless) or the keyed Pro listings/latest equivalent selected by CmcClient",
+      "start": 1,
+      "limit_per_page": 100,
+      "sort": "volume_24h",
+      "sort_dir": "desc",
+      "convert": "USD",
+      "client_side_filters": "All explicit thresholds, category/ecosystem tags, age, turnover and risk bounds are checked against returned CMC fields and reported per result.",
+      "pages_fetched": 2,
+      "scan_limit": 200
+    },
+    "ranking": "volume_change_24h_desc",
+    "scanned_count": 200,
+    "candidate_count": 34,
+    "returned_count": 5,
+    "results": [
+      {
+        "id": 12409,
+        "name": "Lido wstETH",
+        "symbol": "WSTETH",
+        "slug": "lido-finance-wsteth",
+        "cmc_rank": 7643,
+        "date_added": "2021-10-06T18:43:51.000Z",
+        "tags": [
+          "defi",
+          "ethereum-ecosystem",
+          "polygon-ecosystem",
+          "arbitrum-ecosystem",
+          "liquid-staking-derivatives",
+          "optimism-ecosystem",
+          "base-ecosystem",
+          "restaking",
+          "rehypothecated-crypto",
+          "gnosis-chain-ecosystem",
+          "monad-ecosystem"
+        ],
+        "platform": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "slug": "ethereum",
+          "token_address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+        },
+        "num_market_pairs": 820,
+        "circulating_supply": 3826558.70627957,
+        "total_supply": 3826558.70627957,
+        "max_supply": 0,
+        "infinite_supply": false,
+        "price_usd": 2121.0735712901687,
+        "market_cap_usd": 8116412540.879895,
+        "fully_diluted_market_cap_usd": 8116412540.88,
+        "volume_24h_usd": 47931615.11268608,
+        "volume_change_24h_pct": 522.950150132209,
+        "change_1h_pct": -0.075565633877,
+        "change_24h_pct": 2.297933522056,
+        "change_7d_pct": -5.240551560248,
+        "change_30d_pct": -26.435277642167,
+        "last_updated": "2026-11-26T04:19:48.092Z",
+        "risk": {
+          "symbol": "WSTETH",
+          "name": "Lido wstETH",
+          "risk_score": 26.6,
+          "risk_band": "Moderate",
+          "confidence_pct": 100,
+          "formula": "25 liquidity/turnover + 25 volatility + 15 market size + 15 dilution proxy + 10 pair breadth + 10 listing age = 100 (higher = higher measured risk)",
+          "components": [
+            {
+              "name": "Liquidity / turnover",
+              "weight": 25,
+              "points": 15.07,
+              "input": {
+                "volume_24h_usd": 47931615.11268608,
+                "market_cap_usd": 8116412540.879895,
+                "turnover_ratio": 0.0059055173540365465
+              },
+              "missing": false,
+              "explanation": "Turnover is 24h volume divided by market cap, log-scaled from 0.0005 (riskiest) to 0.25 (least risky)."
+            },
+            {
+              "name": "Volatility",
+              "weight": 25,
+              "points": 4.51,
+              "input": {
+                "change_24h_pct": 2.297933522056,
+                "change_7d_pct": -5.240551560248,
+                "change_30d_pct": -26.435277642167,
+                "weighted_daily_volatility_pct": 2.7084693122205024
+              },
+              "missing": false,
+              "explanation": "Weighted daily volatility = 50% |24h| + 30% (|7d|/sqrt(7)) + 20% (|30d|/sqrt(30)); 15% or more receives full points."
+            },
+            {
+              "name": "Market size",
+              "weight": 15,
+              "points": 3.27,
+              "input": {
+                "market_cap_usd": 8116412540.879895
+              },
+              "missing": false,
+              "explanation": "Market cap log-scaled from $1M (riskiest) to $100B (least risky)."
+            },
+            {
+              "name": "Dilution proxy",
+              "weight": 15,
+              "points": 0,
+              "input": {
+                "fully_diluted_market_cap_usd": 8116412540.88,
+                "market_cap_usd": 8116412540.879895,
+                "fdv_to_market_cap_ratio": 1.0000000000000129,
+                "circulating_supply": 3826558.70627957,
+                "total_supply": 3826558.70627957
+              },
+              "missing": false,
+              "explanation": "FDV/market-cap ratio log-scaled from 1x (no measured dilution gap) to 10x (full points). This is a supply/dilution proxy, not holder-concentration data."
+            },
+            {
+              "name": "Market-pair breadth",
+              "weight": 10,
+              "points": 2.72,
+              "input": {
+                "num_market_pairs": 820
+              },
+              "missing": false,
+              "explanation": "Number of CMC market pairs log-scaled from 1 (riskiest) to 10,000 (least risky); a breadth/access proxy, not holder concentration."
+            },
+            {
+              "name": "Listing age",
+              "weight": 10,
+              "points": 1.06,
+              "input": {
+                "date_added": "2021-10-06T18:43:51.000Z",
+                "age_days": 1876
+              },
+              "missing": false,
+              "explanation": "Listing age log-scaled from 7 days (riskiest) to 10 years (least risky)."
+            }
+          ],
+          "caveat": "Transparent market-structure score only. CMC listings data used here does not expose holder concentration; pair breadth and FDV/market cap are labelled proxies, not ownership measurements. Not financial advice."
+        },
+        "explanation": [
+          "Category tags matched: defi.",
+          "Market cap $8,116,412,540.88 is inside the requested band.",
+          "24h volume change is 522.95%, meeting the rising-volume threshold.",
+          "Risk score 26.6/100 (Moderate, 100% of formula weight observed)."
+        ]
+      },
+      {
+        "id": 24927,
+        "name": "crvUSD",
+        "symbol": "CRVUSD",
+        "slug": "crvusd",
+        "cmc_rank": 7699,
+        "date_added": "2023-06-27T12:44:16.000Z",
+        "tags": [
+          "defi",
+          "stablecoin",
+          "asset-backed-stablecoin",
+          "usd-stablecoin",
+          "rehypothecated-crypto"
+        ],
+        "platform": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "slug": "ethereum",
+          "token_address": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e"
+        },
+        "num_market_pairs": 209,
+        "circulating_supply": 140296201.72148183,
+        "total_supply": 140296201.72148183,
+        "max_supply": 0,
+        "infinite_supply": false,
+        "price_usd": 0.9970014987906017,
+        "market_cap_usd": 139875523.39094597,
+        "fully_diluted_market_cap_usd": 139875523.39,
+        "volume_24h_usd": 30991830.888771024,
+        "volume_change_24h_pct": 82.240611777357,
+        "change_1h_pct": -0.007994709511,
+        "change_24h_pct": 0.028733828069,
+        "change_7d_pct": 0.048345198057,
+        "change_30d_pct": -0.135408385215,
+        "last_updated": "2026-11-26T04:19:48.101Z",
+        "risk": {
+          "symbol": "CRVUSD",
+          "name": "crvUSD",
+          "risk_score": 15,
+          "risk_band": "Lower",
+          "confidence_pct": 100,
+          "formula": "25 liquidity/turnover + 25 volatility + 15 market size + 15 dilution proxy + 10 pair breadth + 10 listing age = 100 (higher = higher measured risk)",
+          "components": [
+            {
+              "name": "Liquidity / turnover",
+              "weight": 25,
+              "points": 0.49,
+              "input": {
+                "volume_24h_usd": 30991830.888771024,
+                "market_cap_usd": 139875523.39094597,
+                "turnover_ratio": 0.22156722017868852
+              },
+              "missing": false,
+              "explanation": "Turnover is 24h volume divided by market cap, log-scaled from 0.0005 (riskiest) to 0.25 (least risky)."
+            },
+            {
+              "name": "Volatility",
+              "weight": 25,
+              "points": 0.04,
+              "input": {
+                "change_24h_pct": 0.028733828069,
+                "change_7d_pct": 0.048345198057,
+                "change_30d_pct": -0.135408385215,
+                "weighted_daily_volatility_pct": 0.02479315936351585
+              },
+              "missing": false,
+              "explanation": "Weighted daily volatility = 50% |24h| + 30% (|7d|/sqrt(7)) + 20% (|30d|/sqrt(30)); 15% or more receives full points."
+            },
+            {
+              "name": "Market size",
+              "weight": 15,
+              "points": 8.56,
+              "input": {
+                "market_cap_usd": 139875523.39094597
+              },
+              "missing": false,
+              "explanation": "Market cap log-scaled from $1M (riskiest) to $100B (least risky)."
+            },
+            {
+              "name": "Dilution proxy",
+              "weight": 15,
+              "points": 0,
+              "input": {
+                "fully_diluted_market_cap_usd": 139875523.39,
+                "market_cap_usd": 139875523.39094597,
+                "fdv_to_market_cap_ratio": 0.999999999993237,
+                "circulating_supply": 140296201.72148183,
+                "total_supply": 140296201.72148183
+              },
+              "missing": false,
+              "explanation": "FDV/market-cap ratio log-scaled from 1x (no measured dilution gap) to 10x (full points). This is a supply/dilution proxy, not holder-concentration data."
+            },
+            {
+              "name": "Market-pair breadth",
+              "weight": 10,
+              "points": 4.2,
+              "input": {
+                "num_market_pairs": 209
+              },
+              "missing": false,
+              "explanation": "Number of CMC market pairs log-scaled from 1 (riskiest) to 10,000 (least risky); a breadth/access proxy, not holder concentration."
+            },
+            {
+              "name": "Listing age",
+              "weight": 10,
+              "points": 1.72,
+              "input": {
+                "date_added": "2023-06-27T12:44:16.000Z",
+                "age_days": 1247
+              },
+              "missing": false,
+              "explanation": "Listing age log-scaled from 7 days (riskiest) to 10 years (least risky)."
+            }
+          ],
+          "caveat": "Transparent market-structure score only. CMC listings data used here does not expose holder concentration; pair breadth and FDV/market cap are labelled proxies, not ownership measurements. Not financial advice."
+        },
+        "explanation": [
+          "Category tags matched: defi.",
+          "Market cap $139,875,523.39 is inside the requested band.",
+          "24h volume change is 82.24%, meeting the rising-volume threshold.",
+          "Risk score 15/100 (Lower, 100% of formula weight observed)."
+        ]
+      },
+      {
+        "id": 40215,
+        "name": "NVIDIA Tokenized bStocks",
+        "symbol": "NVDAB",
+        "slug": "nvidia-tokenized-bstocks",
+        "cmc_rank": 225,
+        "date_added": "2026-06-11T03:04:13.000Z",
+        "tags": [
+          "defi",
+          "tokenized-stock",
+          "bnb-chain-ecosystem",
+          "binance-ecosystem",
+          "binance-listing",
+          "tokenized-assets",
+          "bstocks"
+        ],
+        "platform": {
+          "name": "BNB Smart Chain (BEP20)",
+          "symbol": "BNB",
+          "slug": "bnb",
+          "token_address": "0x02fca66c1d1afb4e2a7884261eb00f63598a7436"
+        },
+        "num_market_pairs": 115,
+        "circulating_supply": 1312553.0188290456,
+        "total_supply": 1312553.0188290456,
+        "max_supply": 0,
+        "infinite_supply": false,
+        "price_usd": 152.88652057858462,
+        "market_cap_usd": 200671664.12369025,
+        "fully_diluted_market_cap_usd": 200671664.12,
+        "volume_24h_usd": 152149634.01604432,
+        "volume_change_24h_pct": 57.64420219106,
+        "change_1h_pct": 0.64405719947,
+        "change_24h_pct": 0.215775069308,
+        "change_7d_pct": 0.587235221765,
+        "change_30d_pct": -29.142403065352,
+        "last_updated": "2026-11-26T04:19:48.151Z",
+        "risk": {
+          "symbol": "NVDAB",
+          "name": "NVIDIA Tokenized bStocks",
+          "risk_score": 19.9,
+          "risk_band": "Lower",
+          "confidence_pct": 100,
+          "formula": "25 liquidity/turnover + 25 volatility + 15 market size + 15 dilution proxy + 10 pair breadth + 10 listing age = 100 (higher = higher measured risk)",
+          "components": [
+            {
+              "name": "Liquidity / turnover",
+              "weight": 25,
+              "points": 0,
+              "input": {
+                "volume_24h_usd": 152149634.01604432,
+                "market_cap_usd": 200671664.12369025,
+                "turnover_ratio": 0.7582018850566872
+              },
+              "missing": false,
+              "explanation": "Turnover is 24h volume divided by market cap, log-scaled from 0.0005 (riskiest) to 0.25 (least risky)."
+            },
+            {
+              "name": "Volatility",
+              "weight": 25,
+              "points": 2.06,
+              "input": {
+                "change_24h_pct": 0.215775069308,
+                "change_7d_pct": 0.587235221765,
+                "change_30d_pct": -29.142403065352,
+                "weighted_daily_volatility_pct": 1.2386038525787921
+              },
+              "missing": false,
+              "explanation": "Weighted daily volatility = 50% |24h| + 30% (|7d|/sqrt(7)) + 20% (|30d|/sqrt(30)); 15% or more receives full points."
+            },
+            {
+              "name": "Market size",
+              "weight": 15,
+              "points": 8.09,
+              "input": {
+                "market_cap_usd": 200671664.12369025
+              },
+              "missing": false,
+              "explanation": "Market cap log-scaled from $1M (riskiest) to $100B (least risky)."
+            },
+            {
+              "name": "Dilution proxy",
+              "weight": 15,
+              "points": 0,
+              "input": {
+                "fully_diluted_market_cap_usd": 200671664.12,
+                "market_cap_usd": 200671664.12369025,
+                "fdv_to_market_cap_ratio": 0.9999999999816106,
+                "circulating_supply": 1312553.0188290456,
+                "total_supply": 1312553.0188290456
+              },
+              "missing": false,
+              "explanation": "FDV/market-cap ratio log-scaled from 1x (no measured dilution gap) to 10x (full points). This is a supply/dilution proxy, not holder-concentration data."
+            },
+            {
+              "name": "Market-pair breadth",
+              "weight": 10,
+              "points": 4.85,
+              "input": {
+                "num_market_pairs": 115
+              },
+              "missing": false,
+              "explanation": "Number of CMC market pairs log-scaled from 1 (riskiest) to 10,000 (least risky); a breadth/access proxy, not holder concentration."
+            },
+            {
+              "name": "Listing age",
+              "weight": 10,
+              "points": 4.92,
+              "input": {
+                "date_added": "2026-06-11T03:04:13.000Z",
+                "age_days": 168
+              },
+              "missing": false,
+              "explanation": "Listing age log-scaled from 7 days (riskiest) to 10 years (least risky)."
+            }
+          ],
+          "caveat": "Transparent market-structure score only. CMC listings data used here does not expose holder concentration; pair breadth and FDV/market cap are labelled proxies, not ownership measurements. Not financial advice."
+        },
+        "explanation": [
+          "Category tags matched: defi.",
+          "Market cap $200,671,664.12 is inside the requested band.",
+          "24h volume change is 57.64%, meeting the rising-volume threshold.",
+          "Risk score 19.9/100 (Lower, 100% of formula weight observed)."
+        ]
+      },
+      {
+        "id": 35014,
+        "name": "Derive",
+        "symbol": "DRV",
+        "slug": "derive",
+        "cmc_rank": 218,
+        "date_added": "2025-01-14T02:54:55.000Z",
+        "tags": [
+          "ai-big-data",
+          "defi",
+          "derivatives",
+          "ethereum-ecosystem",
+          "arbitrum-ecosystem",
+          "optimism-ecosystem",
+          "base-ecosystem",
+          "binance-alpha",
+          "defai",
+          "binance-alpha-airdrops",
+          "binance-ecosystem",
+          "perpetuals"
+        ],
+        "platform": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "slug": "ethereum",
+          "token_address": "0xB1D1eae60EEA9525032a6DCb4c1CE336a1dE71BE"
+        },
+        "num_market_pairs": 115,
+        "circulating_supply": 954230352.237838,
+        "total_supply": 1500000000,
+        "max_supply": 1500000000,
+        "infinite_supply": false,
+        "price_usd": 0.36469011541352875,
+        "market_cap_usd": 347998377.28870934,
+        "fully_diluted_market_cap_usd": 547035173.12,
+        "volume_24h_usd": 21707773.413724367,
+        "volume_change_24h_pct": 49.665155763787,
+        "change_1h_pct": -0.051591069607,
+        "change_24h_pct": 7.956810130791,
+        "change_7d_pct": 35.695821912367,
+        "change_30d_pct": 3.701850884374,
+        "last_updated": "2026-11-26T04:19:48.171Z",
+        "risk": {
+          "symbol": "DRV",
+          "name": "Derive",
+          "risk_score": 37,
+          "risk_band": "Moderate",
+          "confidence_pct": 100,
+          "formula": "25 liquidity/turnover + 25 volatility + 15 market size + 15 dilution proxy + 10 pair breadth + 10 listing age = 100 (higher = higher measured risk)",
+          "components": [
+            {
+              "name": "Liquidity / turnover",
+              "weight": 25,
+              "points": 5.58,
+              "input": {
+                "volume_24h_usd": 21707773.413724367,
+                "market_cap_usd": 347998377.28870934,
+                "turnover_ratio": 0.06237895010560633
+              },
+              "missing": false,
+              "explanation": "Turnover is 24h volume divided by market cap, log-scaled from 0.0005 (riskiest) to 0.25 (least risky)."
+            },
+            {
+              "name": "Volatility",
+              "weight": 25,
+              "points": 13.6,
+              "input": {
+                "change_24h_pct": 7.956810130791,
+                "change_7d_pct": 35.695821912367,
+                "change_30d_pct": 3.701850884374,
+                "weighted_daily_volatility_pct": 8.161103302976679
+              },
+              "missing": false,
+              "explanation": "Weighted daily volatility = 50% |24h| + 30% (|7d|/sqrt(7)) + 20% (|30d|/sqrt(30)); 15% or more receives full points."
+            },
+            {
+              "name": "Market size",
+              "weight": 15,
+              "points": 7.38,
+              "input": {
+                "market_cap_usd": 347998377.28870934
+              },
+              "missing": false,
+              "explanation": "Market cap log-scaled from $1M (riskiest) to $100B (least risky)."
+            },
+            {
+              "name": "Dilution proxy",
+              "weight": 15,
+              "points": 2.95,
+              "input": {
+                "fully_diluted_market_cap_usd": 547035173.12,
+                "market_cap_usd": 347998377.28870934,
+                "fdv_to_market_cap_ratio": 1.5719474825773803,
+                "circulating_supply": 954230352.237838,
+                "total_supply": 1500000000
+              },
+              "missing": false,
+              "explanation": "FDV/market-cap ratio log-scaled from 1x (no measured dilution gap) to 10x (full points). This is a supply/dilution proxy, not holder-concentration data."
+            },
+            {
+              "name": "Market-pair breadth",
+              "weight": 10,
+              "points": 4.85,
+              "input": {
+                "num_market_pairs": 115
+              },
+              "missing": false,
+              "explanation": "Number of CMC market pairs log-scaled from 1 (riskiest) to 10,000 (least risky); a breadth/access proxy, not holder concentration."
+            },
+            {
+              "name": "Listing age",
+              "weight": 10,
+              "points": 2.68,
+              "input": {
+                "date_added": "2025-01-14T02:54:55.000Z",
+                "age_days": 681
+              },
+              "missing": false,
+              "explanation": "Listing age log-scaled from 7 days (riskiest) to 10 years (least risky)."
+            }
+          ],
+          "caveat": "Transparent market-structure score only. CMC listings data used here does not expose holder concentration; pair breadth and FDV/market cap are labelled proxies, not ownership measurements. Not financial advice."
+        },
+        "explanation": [
+          "Category tags matched: defi, derivatives.",
+          "Market cap $347,998,377.29 is inside the requested band.",
+          "24h volume change is 49.67%, meeting the rising-volume threshold.",
+          "Risk score 37/100 (Moderate, 100% of formula weight observed)."
+        ]
+      },
+      {
+        "id": 40217,
+        "name": "SpaceX Tokenized bStocks",
+        "symbol": "SPCXB",
+        "slug": "spacex-tokenized-bstocks",
+        "cmc_rank": 250,
+        "date_added": "2026-06-11T03:04:29.000Z",
+        "tags": [
+          "defi",
+          "tokenized-stock",
+          "bnb-chain-ecosystem",
+          "binance-ecosystem",
+          "binance-listing",
+          "tokenized-assets",
+          "bstocks"
+        ],
+        "platform": {
+          "name": "BNB Smart Chain (BEP20)",
+          "symbol": "BNB",
+          "slug": "bnb",
+          "token_address": "0xbe9d156892e55e7154bcd3cb0fea677f9d3103e1"
+        },
+        "num_market_pairs": 147,
+        "circulating_supply": 858214.50362685,
+        "total_supply": 858214.50362685,
+        "max_supply": 0,
+        "infinite_supply": false,
+        "price_usd": 129.10796582486248,
+        "market_cap_usd": 110802328.80465667,
+        "fully_diluted_market_cap_usd": 110802328.8,
+        "volume_24h_usd": 58832585.74838467,
+        "volume_change_24h_pct": 43.323132897557,
+        "change_1h_pct": 0.433668776855,
+        "change_24h_pct": 3.695844622522,
+        "change_7d_pct": -10.883898095129,
+        "change_30d_pct": -12.427621371511,
+        "last_updated": "2026-11-26T04:19:48.184Z",
+        "risk": {
+          "symbol": "SPCXB",
+          "name": "SpaceX Tokenized bStocks",
+          "risk_score": 24.3,
+          "risk_band": "Lower",
+          "confidence_pct": 100,
+          "formula": "25 liquidity/turnover + 25 volatility + 15 market size + 15 dilution proxy + 10 pair breadth + 10 listing age = 100 (higher = higher measured risk)",
+          "components": [
+            {
+              "name": "Liquidity / turnover",
+              "weight": 25,
+              "points": 0,
+              "input": {
+                "volume_24h_usd": 58832585.74838467,
+                "market_cap_usd": 110802328.80465667,
+                "turnover_ratio": 0.5309688558270819
+              },
+              "missing": false,
+              "explanation": "Turnover is 24h volume divided by market cap, log-scaled from 0.0005 (riskiest) to 0.25 (least risky)."
+            },
+            {
+              "name": "Volatility",
+              "weight": 25,
+              "points": 5.89,
+              "input": {
+                "change_24h_pct": 3.695844622522,
+                "change_7d_pct": -10.883898095129,
+                "change_30d_pct": -12.427621371511,
+                "weighted_daily_volatility_pct": 3.5358329243584605
+              },
+              "missing": false,
+              "explanation": "Weighted daily volatility = 50% |24h| + 30% (|7d|/sqrt(7)) + 20% (|30d|/sqrt(30)); 15% or more receives full points."
+            },
+            {
+              "name": "Market size",
+              "weight": 15,
+              "points": 8.87,
+              "input": {
+                "market_cap_usd": 110802328.80465667
+              },
+              "missing": false,
+              "explanation": "Market cap log-scaled from $1M (riskiest) to $100B (least risky)."
+            },
+            {
+              "name": "Dilution proxy",
+              "weight": 15,
+              "points": 0,
+              "input": {
+                "fully_diluted_market_cap_usd": 110802328.8,
+                "market_cap_usd": 110802328.80465667,
+                "fdv_to_market_cap_ratio": 0.9999999999579732,
+                "circulating_supply": 858214.50362685,
+                "total_supply": 858214.50362685
+              },
+              "missing": false,
+              "explanation": "FDV/market-cap ratio log-scaled from 1x (no measured dilution gap) to 10x (full points). This is a supply/dilution proxy, not holder-concentration data."
+            },
+            {
+              "name": "Market-pair breadth",
+              "weight": 10,
+              "points": 4.58,
+              "input": {
+                "num_market_pairs": 147
+              },
+              "missing": false,
+              "explanation": "Number of CMC market pairs log-scaled from 1 (riskiest) to 10,000 (least risky); a breadth/access proxy, not holder concentration."
+            },
+            {
+              "name": "Listing age",
+              "weight": 10,
+              "points": 4.92,
+              "input": {
+                "date_added": "2026-06-11T03:04:29.000Z",
+                "age_days": 168
+              },
+              "missing": false,
+              "explanation": "Listing age log-scaled from 7 days (riskiest) to 10 years (least risky)."
+            }
+          ],
+          "caveat": "Transparent market-structure score only. CMC listings data used here does not expose holder concentration; pair breadth and FDV/market cap are labelled proxies, not ownership measurements. Not financial advice."
+        },
+        "explanation": [
+          "Category tags matched: defi.",
+          "Market cap $110,802,328.8 is inside the requested band.",
+          "24h volume change is 43.32%, meeting the rising-volume threshold.",
+          "Risk score 24.3/100 (Lower, 100% of formula weight observed)."
+        ]
+      }
+    ],
+    "mode": "keyless",
+    "credit_count_last_response": 1,
+    "generated_at": "2026-11-26T04:20:00.964Z",
+    "note": "Results and explanations use only fields returned by CoinMarketCap for this call. An empty result means no asset in the scanned slice passed every parsed filter; it is not filled with approximations."
+  }
+}

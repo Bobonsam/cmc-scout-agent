@@ -1,0 +1,1 @@
+{"checked_at":"2026-11-26T04:20:00Z","note":"Verified by connecting a real MCP client and calling listTools; this check itself made no CoinMarketCap API call.","server":"cmc-scout-agent","tools":["coin_quote","dex_pair_check","market_mood","natural_language_screener","new_listings","risk_score","top_movers"],"transport":"stdio"}

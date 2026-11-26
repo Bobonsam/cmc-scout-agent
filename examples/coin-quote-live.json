@@ -1,0 +1,32 @@
+{
+  "convert": "USD",
+  "coins": [
+    {
+      "id": 1,
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "slug": "bitcoin",
+      "date_added": "2010-07-13T00:00:00.000Z",
+      "price_usd": 61390.14027094513,
+      "market_cap_usd": 1234927499538.1875,
+      "volume_24h_usd": 27746320288.9607,
+      "change_1h_pct": -0.350156468584,
+      "change_24h_pct": 3.768792089551,
+      "change_7d_pct": -5.56404595564
+    },
+    {
+      "id": 1027,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "date_added": "2015-08-07T00:00:00.000Z",
+      "price_usd": 1733.9437996727897,
+      "market_cap_usd": 211965759760.56647,
+      "volume_24h_usd": 8934286343.294382,
+      "change_1h_pct": -0.196621924288,
+      "change_24h_pct": 4.54981003345,
+      "change_7d_pct": -5.044983430012
+    }
+  ],
+  "mode": "keyless"
+}

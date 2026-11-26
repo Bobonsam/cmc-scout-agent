@@ -1,0 +1,13 @@
+{
+  "total_market_cap_usd": 2094041892644.4587,
+  "total_volume_24h_usd": 59427464866.55,
+  "btc_dominance_pct": 58.901600196982,
+  "eth_dominance_pct": 10.111470686209,
+  "active_cryptocurrencies": 7900,
+  "fear_and_greed": {
+    "value": 9,
+    "classification": "Extreme fear",
+    "updated": "2026-11-23T04:23:10.015Z"
+  },
+  "mode": "keyless"
+}
